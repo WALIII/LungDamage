@@ -25,7 +25,7 @@ function [IM2] = DL_ImageSegment(image);
 % downsample if image is too large/ too big...
 if size(image,1) > 3000;
     disp('downsizing image')
-image = imresize(image,0.3);
+image = imresize(image,0.75);
 end
 
 disp(' pre-processing image...');

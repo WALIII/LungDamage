@@ -1,4 +1,4 @@
-function RGB1 = DL_ImageStrat(IM2);% Derek's 'geo-plot' plotter
+function [RGB1, out] = DL_ImageStrat(IM2);% Derek's 'geo-plot' plotter
 
 % Create ( and save) image
  % Make an intensity matched overlay:
@@ -63,20 +63,21 @@ end
 matA = C(:,:,2) - C(:,:,3);
 
 figure();
-subplot(1,3,1)
+subplot(3,1,1)
 imshow(RGB1);
-subplot(1,3,2)
+subplot(3,1,2)
 h = imshow(RGB1);
 alpha = (matA+0.2);
 BW1 = imbinarize(matA);
 alpha(alpha<0.25) = 0;
 set(h, 'AlphaData', BW1);
-subplot(1,3,3)
+subplot(3,1,3)
 h2 = imshow(RGB1);
 alpha = -(matA)+0.2; 
 alpha(alpha<0.3) = 0;
 BW2 = imbinarize(alpha);
 set(h2, 'AlphaData', alpha);
+
 
 
 
@@ -100,21 +101,22 @@ matA = C(:,:,1) - C(:,:,2);
 
 
 figure();
-subplot(1,3,1)
+subplot(3,1,1)
 imshow(RGB1);
-subplot(1,3,2)
+subplot(3,1,2)
 h = imshow(RGB1);
 alpha = (matA+0.2);
 BW1 = imbinarize(matA);
 alpha(alpha<0.25) = 0;
 set(h, 'AlphaData', BW1);
-subplot(1,3,3)
+out.R = BW1;
+subplot(3,1,3)
 h2 = imshow(RGB1);
 alpha = -(matA)+0.2; 
 alpha(alpha<0.3) = 0;
 BW2 = imbinarize(alpha);
 set(h2, 'AlphaData', alpha);
-
+out.B = BW2;
 
 
 % Plot boundires 

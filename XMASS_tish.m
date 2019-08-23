@@ -7,9 +7,9 @@ if nargin < 4
    T = 1:size(GG1,2);
    F = 1:size(GG1,1);
 elseif nargin < 6
-   HL = [0.005 .005];
+   HL = [0.5 .95];
 end
-
+  HL = [0.05 .70];
 Llim = HL(1);
  Hlim = HL(2);
 
