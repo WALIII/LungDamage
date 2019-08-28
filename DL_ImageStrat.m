@@ -2,11 +2,11 @@ function [RGB1, out] = DL_ImageStrat(IM2);% Derek's 'geo-plot' plotter
 
 % Create ( and save) image
  % Make an intensity matched overlay:
- figure(); 
-  RGB1 = XMASS_song(IM2(:,:,1),IM2(:,:,2),IM2(:,:,3));
-  
-  
- disp('Make a selection!'); 
+ figure();
+  RGB1 = XMASS_tish(IM2(:,:,1),IM2(:,:,2),IM2(:,:,3));
+
+
+ disp('Make a selection!');
 
 % get cross-section ( through UI input)
 [x,y] = ginput(2);
@@ -19,7 +19,7 @@ m = ((y(2)-y(1))/(x(2)-x(1))); % slope ( rise/run)
 counter = 1;
 
 
-% plot on top 
+% plot on top
 I = getimage(gca);
 
 for i = 1: 20; % change x and y by on
@@ -40,7 +40,7 @@ for i = 1: 20; % change x and y by on
   end
 end
 
-    
+
 
 
 dat2 = mean(dat,3);
@@ -50,7 +50,7 @@ hold on;
  plot(smooth(dat2(:,1),smth),'r')
  plot(smooth(dat2(:,2),smth),'g')
  plot(smooth(dat2(:,3),smth),'b')
- 
+
 
 
 smooth_param = 10;% how much to spatially smooth
@@ -73,7 +73,7 @@ alpha(alpha<0.25) = 0;
 set(h, 'AlphaData', BW1);
 subplot(3,1,3)
 h2 = imshow(RGB1);
-alpha = -(matA)+0.2; 
+alpha = -(matA)+0.2;
 alpha(alpha<0.3) = 0;
 BW2 = imbinarize(alpha);
 set(h2, 'AlphaData', alpha);
@@ -81,10 +81,10 @@ set(h2, 'AlphaData', alpha);
 
 
 
-% Plot boundires 
+% Plot boundires
 B = bwboundaries(BW1);
 
-figure(); 
+figure();
 imagesc(RGB1);
 
 hold on;
@@ -112,7 +112,7 @@ set(h, 'AlphaData', BW1);
 out.R = BW1;
 subplot(3,1,3)
 h2 = imshow(RGB1);
-alpha = -(matA)+0.2; 
+alpha = -(matA)+0.2;
 alpha(alpha<0.3) = 0;
 BW2 = imbinarize(alpha);
 set(h2, 'AlphaData', alpha);
@@ -123,10 +123,10 @@ for i = 1: 3
 out.All(:,:,i) = imbinarize(C(:,:,i));
 end
 
-% Plot boundires 
+% Plot boundires
 B2 = bwboundaries(BW1);
 
-figure(); 
+figure();
 imagesc(RGB1);
 
 hold on;
@@ -134,7 +134,3 @@ for i = 1:size(B2,1)
 plot(B2{i}(:,2),B2{i}(:,1),'LineWidth',2,'Color',[1 1 1])
 end
 title('red and green overlap')
-
-
-
- 
