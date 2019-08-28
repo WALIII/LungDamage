@@ -48,12 +48,16 @@ figure(); imshow(GG)
 
 
 RGB2 = mat2gray(RGB1);
-RGB2 = RGB1;
+
+
+sigma = 5;
+% RGB2 = imgaussfilt(RGB1,sigma);
+RGB3 = imgaussfilt(RGB1,sigma,'padding','circular');
 
 A1 = [1,horz_save];%1: ((size(RGB2,2)-1)/3): size(RGB2,2); % breakdown size of im matrix
 for i = 1:3
 
-    [HH1 HH2] = max(RGB1,[],3);
+    [HH1 HH2] = max(RGB3,[],3);
     HH2(mean(RGB2(:,:,:),3)<0.001) = NaN;
 
     RIm{i} = HH2(:,A1(i):A1(i+1),1);
@@ -65,8 +69,7 @@ for i = 1:3
     BIm2{i} = sum(find(BIm{i}==3));
     PcentR(i) = RIm2{i}/(RIm2{i}+GIm2{i}+BIm2{i});
     PcentG(i) = GIm2{i}/(RIm2{i}+GIm2{i}+BIm2{i});
-    PcentB(i) = BIm2{i}/(RIm2{i}+GIm2{i}+BIm2{i});
-    
+    PcentB(i) = BIm2{i}/(RIm2{i}+GIm2{i}+BIm2{i}); 
     data(:,i) = [PcentB(i),PcentG(i),PcentR(i)];
 end
 
