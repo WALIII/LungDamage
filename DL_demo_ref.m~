@@ -72,10 +72,8 @@ end
 
 figure();
 b = bar(data'*100,'stacked');
-b(1).FaceColor = 'blue';
-b(2).FaceColor = 'green';
-b(3).FaceColor = 'red';
-legend('healthy', 'moderate','damaged');
+b(1) = b(2).FaceColor = 'red';
+legend('healthy', 'damaged');
 ylabel('Percent of tissue');
 xlabel('Sample');
 
