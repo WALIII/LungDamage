@@ -43,6 +43,21 @@ for i = 1:3
     data(i,:) = [PcentB(i), PcentR(i)];
 end
 
+
+% RGB2 = mat2gray(RGB1);
+% 
+% A1 = 1: (size(IM2,2)/3)-1: size(IM2,2); % breakdown size of im matrix
+% for i = 1:3
+%     FullIm{i} = RGB2(:,A1(i):A1(i+1),1) + RGB2(:,A1(i):A1(i+1),2) + RGB2(:,A1(i):A1(i+1),3);
+%     RIm{i} = RGB2(:,A1(i):A1(i+1),1);
+%     GIm{i} = RGB2(:,A1(i):A1(i+1),2);
+%     BIm{i} = RGB2(:,A1(i):A1(i+1),3);
+%     PcentR(i) = sum(RIm{i}(:))/sum(FullIm{i}(:));
+%     PcentG(i) = sum(GIm{i}(:))/sum(FullIm{i}(:));
+%     PcentB(i) = sum(BIm{i}(:))/sum(FullIm{i}(:));
+%     data(i,:) = [PcentB(i), PcentR(i),PcentG(i)];
+% end
+
 figure();
 bar(data*100,'stacked');
 legend('healthy', 'damaged');

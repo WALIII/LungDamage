@@ -118,6 +118,10 @@ BW2 = imbinarize(alpha);
 set(h2, 'AlphaData', alpha);
 out.B = BW2;
 
+% get ouptupts
+for i = 1: 3
+out.All(:,:,i) = imbinarize(C(:,:,i));
+end
 
 % Plot boundires 
 B2 = bwboundaries(BW1);
