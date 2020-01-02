@@ -1,4 +1,4 @@
-function DL_demo_ref(reference)
+function out = DL_demo_ref(reference)
 % Plug and play... just run in a folder with the image you want.
 
 mov_listing=dir(fullfile(pwd,'*.jpg'));
@@ -30,21 +30,7 @@ figure(); imshow(GG)
 [IM2] = DL_ImageSegment(GG);
 
 
-[RGB1, out] = DL_ImageStrat(IM2);
-
-% Calculate precentages:
-% 
-% % A = 1: (size(IM2,2)/3)-1: size(IM2,2); % breakdown size of im matrix
-% A1 = [1,horz_save];%1: ((size(RGB2,2)-1)/3): size(RGB2,2); % breakdown size of im matrix
-% 
-% for i = 1:3
-%     FullIm{i} = out.B(:,A(i):A(i+1)) +out.R(:,A(i):A(i+1));
-%     RIm{i} = out.R(:,A(i):A(i+1));
-%     BIm{i} = out.B(:,A(i):A(i+1));
-%     PcentR(i) = sum(RIm{i}(:))./sum(FullIm{i}(:));
-%     PcentB(i) = sum(BIm{i}(:))./sum(FullIm{i}(:));
-%     data(i,:) = [PcentB(i), PcentR(i)];
-% end
+[RGB1, out_mat] = DL_ImageStrat(IM2);
 
 
 RGB2 = mat2gray(RGB1);
@@ -52,10 +38,12 @@ RGB2 = mat2gray(RGB1);
 
 sigma = 5;
 % RGB2 = imgaussfilt(RGB1,sigma);
-RGB3 = imgaussfilt(RGB1,sigma,'padding','circular');
+
+RGB3 = imgaussfilt(RGB1,sigma,'padding','circular');% Filter the data 
+
 
 A1 = [1,horz_save];%1: ((size(RGB2,2)-1)/3): size(RGB2,2); % breakdown size of im matrix
-for i = 1:3
+for i = 1:(length(filenames)+1);
 
     [HH1 HH2] = max(RGB3,[],3);
     HH2(mean(RGB2(:,:,:),3)<0.001) = NaN;
@@ -81,6 +69,13 @@ b(3).FaceColor = 'red';
 legend('healthy', 'moderate','damaged');
 ylabel('Percent of tissue');
 xlabel('Sample');
+
+
+
+% output data matrix:
+out.PcentR = PcentR*100;
+out.PcentG = PcentG*100;
+out.PcentB = PcentB*100;
 
 
 
