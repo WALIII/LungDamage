@@ -9,7 +9,7 @@ if nargin < 4
 elseif nargin < 6
    HL = [0.5 .95];
 end
-  HL = [0.05 .70];
+  HL = [0.05 .95];
 Llim = HL(1);
  Hlim = HL(2);
 
