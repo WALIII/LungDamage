@@ -46,6 +46,7 @@ A1 = [1,horz_save];%1: ((size(RGB2,2)-1)/3): size(RGB2,2); % breakdown size of i
 for i = 1:(length(filenames)+1);
 
     [HH1 HH2] = max(RGB3,[],3);
+    
     HH2(mean(RGB2(:,:,:),3)<0.001) = NaN;
 
     RIm{i} = HH2(:,A1(i):A1(i+1),1);
@@ -59,6 +60,10 @@ for i = 1:(length(filenames)+1);
     PcentG(i) = GIm2{i}/(RIm2{i}+GIm2{i}+BIm2{i});
     PcentB(i) = BIm2{i}/(RIm2{i}+GIm2{i}+BIm2{i}); 
     data(:,i) = [PcentB(i),PcentG(i),PcentR(i)];
+    
+    % Create similarity Score to reference ( first ) image:
+    
+    
 end
 
 figure();
