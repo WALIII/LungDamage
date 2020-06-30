@@ -4,7 +4,7 @@
 % WAL3
 
 
-% Load in data 
+% Load in data locally 
 
 mov_listing=dir(fullfile(pwd,'*.TIF'));
 mov_listing={mov_listing(:).name};
