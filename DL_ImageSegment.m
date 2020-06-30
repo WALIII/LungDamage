@@ -1,6 +1,7 @@
 function [IM2] = DL_ImageSegment(image);
 % DL_ImageSegmentation.m
 
+
 % Color-Based Segmentation Using K-Means Clustering for DCL's imaging data
 
 % WAL3
@@ -27,6 +28,13 @@ if size(image,1) > 3000;
     disp('downsizing image')
 image = imresize(image,0.75);
 end
+
+
+% filter image:
+image = double(image);
+sigma = 2;% smooth
+image = imgaussfilt(image,sigma,'padding','circular');% Filter the data
+
 
 disp(' pre-processing image...');
 % Pre-process Image
@@ -75,6 +83,7 @@ disp(' pre-processing image...');
   
   [~,srtChan] = sort(chan_srt);
   
+  DL_PlotPixels(image,cluster_idx,srtChan);
   for i = 1:nColors;    
  IM2(:,:,i) = IM(:,:,srtChan(i));
   end

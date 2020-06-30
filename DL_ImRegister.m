@@ -40,6 +40,7 @@ end
 figure();
 for i = 1: length(mov_listing)
  imagesc(squeeze(ResizedIM(:,:,:,i)));
+     title('Unregistered Images');
  pause(1);
 end
 
@@ -48,19 +49,20 @@ end
 
 % register:
 clear optimizer
-[optimizer, metric] = imregconfig('monomodal');
+[optimizer, metric] = imregconfig('multimodal');
 %optimizer = registration.optimizer.RegularStepGradientDescent;
-%  optimizer.InitialRadius = 0.09;
-% optimizer.Epsilon = 1.5e-2;
-%optimizer.GrowthFactor = 1.05;
-optimizer.MaximumIterations = 30;
+optimizer.InitialRadius = 0.009;
+optimizer.Epsilon = 1.5e-4;
+optimizer.GrowthFactor = 1.3;
+optimizer.MaximumIterations = 100;
+% optimizer.MaximumIterations = 30;
 % optimizer.MinimumStepLength = 5e-4;
 for i = 1: length(mov_listing)
     A = rgb2gray(ResizedIM(:,:,:,1));
     B = rgb2gray(ResizedIM(:,:,:,i));
 %     B = imhistmatch(B,A);
 
-     tform = imregtform(B, A , 'similarity', optimizer, metric);
+     tform = imregtform(B, A , 'affine', optimizer, metric);
      for iii = 1:3
 Registered(:,:,iii,i) = imwarp(squeeze(ResizedIM(:,:,iii,i)),tform,'OutputView',imref2d(size(A)));
      end
