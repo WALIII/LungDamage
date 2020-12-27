@@ -20,7 +20,6 @@ function RGB1 = DL_demo
   %
   % Example:
   %    out = DL_demo % UI will allow you to select an image
-  %    out = DL_demo('S copy.jpg') %manually input an image to cluster
   %
   % Other m-files required: none
   % Subfunctions: none
