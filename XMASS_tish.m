@@ -1,5 +1,8 @@
-function RGB1 = XMASS_song(GG1,GG2,GG3,F,T,HL);
+function RGB1 = XMASS_tish(GG1,GG2,GG3,F,T,HL);
+% RGB overlay
 
+% WAL3
+% Dec 2018; Last revision: 12-Dec-2020
 
 if nargin < 4
    %HL = [0.00005 .05];
@@ -21,9 +24,6 @@ im1(:,:,3)=  mat2gray(GG3);
 
 RGB1 = imadjust(im1,[Llim Llim Llim; Hlim Hlim Hlim],[]);
 
-% RGB1 = flipdim(RGB1,1);
- %F = flip(F,1);
-%RGB1 = RGB1(size(RGB1,1):-1:1,:,:);
 
 image(T,F,(RGB1));set(gca,'YDir','normal');
 

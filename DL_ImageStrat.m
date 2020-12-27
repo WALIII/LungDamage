@@ -1,14 +1,17 @@
-function [RGB1, out] = DL_ImageStrat(IM2);% Derek's 'geo-plot' plotter
+function [RGB1, out] = DL_ImageStrat(IM2);
+%DL_ImageStrat.m 
 
-% Create ( and save) image
- % Make an intensity matched overlay:
+% 'geo-plot' plotter for clustered data, and to create ( and save) imagew
+
+% WAL3
+% Dec 2018; Last revision: 12-Dec-2020
+
+% Make an intensity matched overlay:
  figure();
   RGB1 = XMASS_tish(IM2(:,:,1),IM2(:,:,2),IM2(:,:,3));
 
-
- disp('Make a selection!');
-
 % get cross-section ( through UI input)
+ disp('Make a cross-section selection!');
 [x,y] = ginput(2);
 
 hold on;

@@ -1,8 +1,8 @@
-function RGB1 = DL_demo
+function DL_demo
   %DL_demo.m - Plug-and-play Demo script to classify tussue damage for
   %                a single image
   %
-  % Load in an image to process.
+  % Load in an image .
   %
   %
   % Syntax:  out = DL_demo
@@ -10,23 +10,23 @@ function RGB1 = DL_demo
   % Inputs:
   %    reference - name of referance image in local directory
   % Optional Inputs:
-  %    type = image type (supports: PNG, jpeg,mat)
+  %    type = image type (supports: PNG, jpeg)
   %
   % Outputs:
-  %    RGB1 - H*W*C ( height by width by cluster)
-  %         RGB1(:,:,1) - Severly Damaged
-  %         RGB1(:,:,2) - Moderatley Damaged
-  %         RGB1(:,:,3) - Not Damaged
+  %    PcentR - Percent of severly damaged tissue
+  %    PcentG - Percent of moderatly damaged tissue
+  %    PcentG - Percent of healthy tissue
   %
   % Example:
-  %    out = DL_demo % UI will allow you to select an image
-  %    out = DL_demo('S copy.jpg') %manually input an image to cluster
+  %    out = DL_demo_ref('S copy.jpg')
+  %    out = DL_demo_ref('S copy.png','type',png)
+  %    out = DL_demo_ref('S copy.png','type',png,'sigma',5)% optional filtering
   %
   % Other m-files required: none
   % Subfunctions: none
-  % MAT-files required: DL_ImageSegment.m,  DL_ImageStrat.m
+  % MAT-files required: none
   %
-  % See also: DL_demo_ref
+  % See also: OTHER_FUNCTION_NAME1,  OTHER_FUNCTION_NAME2
 
   % Author: William Liberti (WAL3)
   % Work address: UC Berkeley
