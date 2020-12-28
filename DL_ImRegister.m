@@ -30,7 +30,7 @@ for ii = 1:length(mov_listing);
 xdiff = X-xral;
 ydiff = Y-yral;
 
-temp = padarray(IM{ii},[xdiff/2 ydiff/2],'replicate');
+temp = padarray(IM{ii},[round(xdiff/2) round(ydiff/2)],'replicate');
 
 ResizedIM(:,:,:,ii) = imresize(temp,0.1);
 end
