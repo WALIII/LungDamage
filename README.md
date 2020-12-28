@@ -10,7 +10,7 @@ Any comments or questions can be directed to: Will Liberti at bliberti@bu.edu
 
 If you use this in your work, please cite:
 
-Alveolar epithelial cell fate is maintained in a spatially restricted manner to promote lung regeneration after acute injury, Liberti et al. 
+*Alveolar epithelial cell fate is maintained in a spatially restricted manner to promote lung regeneration after acute injury, _Liberti et al._ * 
 
 
 ### Basic Walkthrough
