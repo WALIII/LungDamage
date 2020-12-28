@@ -97,10 +97,10 @@ set(gca,'xtick',1:length(mov_listing));
 
 % Plot data...
 figure(); 
-XMASS_tish(256-Registered(:,:,1,1),256-Registered(:,:,1,2),256-Registered(:,:,1,1));
+XMASS_tish(256-Registered(:,:,1,1),256-Registered(:,:,1,2),256-Registered(:,:,1,1),'hl',[0.5 0.95]);
 title('aligned, adjacent slides');
 figure(); 
-XMASS_tish(256-ResizedIM(:,:,1,1),256-ResizedIM(:,:,1,2),256-ResizedIM(:,:,1,1));
+XMASS_tish(256-ResizedIM(:,:,1,1),256-ResizedIM(:,:,1,2),256-ResizedIM(:,:,1,1),'hl',[0.5 0.95]);
 
 title('un-aligned, adjacent slides');
 

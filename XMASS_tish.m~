@@ -12,14 +12,27 @@ function RGB1 = XMASS_tish(GG1,GG2,GG3,varargin);
 vin=varargin;
 for i=1:length(vin)
     if isequal(vin{i},'hl') % image type to pull from local directory
-        HL=vin{i+1};
+        hl=vin{i+1};
     elseif isequal(vin{i},'filer_sigma') % filter radius ( reduce for small images);
         sigma = vin{i+1};
+    elseif isequal(vin{i},'normalize')
+        normalize = vin{i+1};
     end
 end
 
+
+if nargin < 4
+   %HL = [0.00005 .05];
+   HL = [0.0001 .001];
+   T = 1:size(GG1,2);
+   F = 1:size(GG1,1);
+elseif nargin < 6
+   HL = [0.5 .95];
+end
+
+  HL = [0.50 .95];
 Llim = HL(1);
-Hlim = HL(2);
+ Hlim = HL(2);
 
 im1(:,:,1)=  mat2gray(GG1);
 im1(:,:,2)=  mat2gray(GG2);

@@ -1,7 +1,7 @@
 function DL_display_image(GG,out_mat);
 % DL_display_image
 
-% plot raw image with damage boundries overlain
+% plot raw image, with overlaing damage boundries 
 
 % WAL3
 % 12/27/2020
