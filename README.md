@@ -7,7 +7,7 @@ Take this example image:
 ![ScreenShot](images/image00.jpg)
 
 ```
->> cd('images'); enter the images directory
+>> % cd('images'); enter the images directory
 
 >> RGB1 = DL_demo % load 'image00.jpg'
 ```
@@ -19,3 +19,14 @@ Isolate the moderately damaged tissue:
 
 Isolate just the severely damaged tissue:
 ![ScreenShot](images/image03.png)
+
+
+## Clustering multipe images
+
+Sometimes you will want to cluster several images, or cluster relative to a known healthy, or known damaged  reference sample.
+
+
+```
+>> % cd('images/Unprocessed')
+>> out = DL_demo_ref('S.jpg')
+```

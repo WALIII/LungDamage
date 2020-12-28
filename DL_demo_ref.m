@@ -14,7 +14,8 @@ function out = DL_demo_ref(reference,varargin)
 % Outputs:
 %    PcentR - Percent of severly damaged tissue
 %    PcentG - Percent of moderatly damaged tissue
-%    PcentG - Percent of healthy tissue
+%    PcentG - Percent of normal tissue
+%    RGB_out = RGB image for each tissue image 
 %
 % Example:
 %    out = DL_demo_ref('S copy.jpg')
@@ -37,7 +38,7 @@ function out = DL_demo_ref(reference,varargin)
 
 % default params
 image_type = '*.jpg';
-sigma = 5; % filtering kernal 
+sigma = 5; % filtering kernal
 
 % Manual inputs
 vin=varargin;
@@ -101,6 +102,8 @@ for i = 1:(length(filenames)+1);
     GIm{i} = HH2(:,A1(i):A1(i+1),1);
     BIm{i} = HH2(:,A1(i):A1(i+1),1);
     
+    RGB_out{i} = RGB2(:,A1(i):A1(i+1),:);
+    
     RIm2{i} = sum(find(RIm{i}==1));
     GIm2{i} = sum(find(GIm{i}==2));
     BIm2{i} = sum(find(BIm{i}==3));
@@ -118,7 +121,7 @@ b = bar(data'*100,'stacked');
 b(1).FaceColor = 'blue';
 b(2).FaceColor = 'green';
 b(3).FaceColor = 'red';
-legend('healthy', 'moderate','damaged');
+legend('normal', 'moderate','damaged');
 ylabel('Percent of tissue');
 xlabel('Sample');
 
@@ -127,7 +130,20 @@ out.PcentR = PcentR*100;
 out.PcentG = PcentG*100;
 out.PcentB = PcentB*100;
 
+% output damage masks for each input image
+out.RGB_out = RGB_out;
 
 
-
+% export .tif images for analysis in Fiji
+mkdir('clustered_images');
+for i = 1:length(RGB_out);
+    if i ==1
+        imwrite(RGB_out{i},['clustered_images/',reference(1:end-4),'_clustered.tif'])
+        
+    else
+        imwrite(RGB_out{i},['clustered_images/',filenames{i-1}(1:end-4),'_clustered.tif'])
+    end
+end
+DL_display_image(GG,out_mat);
+saveas(gcf, ['clustered_images/','Bounded_Images','_clustered.tif'])
 

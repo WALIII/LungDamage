@@ -137,3 +137,6 @@ for i = 1:size(B2,1)
 plot(B2{i}(:,2),B2{i}(:,1),'LineWidth',2,'Color',[1 1 1])
 end
 title('red and green overlap')
+
+out.B = B;
+out.B2 = B2;
