@@ -6,7 +6,7 @@ function RGB1 = XMASS_tish(GG1,GG2,GG3,varargin);
 
    T = 1:size(GG1,2);
    F = 1:size(GG1,1);
-   HL = [0.5 .95];
+   HL = [0.05 .95];
 
 % Manual inputs
 vin=varargin;
