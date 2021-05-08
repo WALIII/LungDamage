@@ -10,15 +10,15 @@ function [RGB1, out] = DL_ImageStrat(IM2);
  figure();
   RGB1 = XMASS_tish(IM2(:,:,1),IM2(:,:,2),IM2(:,:,3));
 
-% get cross-section ( through UI input)
- disp('Make a cross-section selection!');
-[x,y] = ginput(2);
-
-hold on;
-plot(x,y,'LineWidth',5,'Color',[1 1 1]);
-
-% make like 'thick'
-m = ((y(2)-y(1))/(x(2)-x(1))); % slope ( rise/run)
+% % get cross-section ( through UI input)
+%  disp('Make a cross-section selection!');
+% [x,y] = ginput(2);
+% 
+% hold on;
+% plot(x,y,'LineWidth',5,'Color',[1 1 1]);
+% 
+% % make like 'thick'
+% m = ((y(2)-y(1))/(x(2)-x(1))); % slope ( rise/run)
 counter = 1;
 
 
