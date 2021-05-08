@@ -1,65 +1,70 @@
 function [RGB1, out] = DL_ImageStrat(IM2);
-%DL_ImageStrat.m 
+%DL_ImageStrat.m
 
 % 'geo-plot' plotter for clustered data, and to create ( and save) imagew
 
 % WAL3
 % Dec 2018; Last revision: 12-Dec-2020
 
+% User inputs
+Draw_Line = 1; % flag to draw a line across a damaged section
+
 % Make an intensity matched overlay:
- figure();
-  RGB1 = XMASS_tish(IM2(:,:,1),IM2(:,:,2),IM2(:,:,3));
-
-% % get cross-section ( through UI input)
-%  disp('Make a cross-section selection!');
-% [x,y] = ginput(2);
-% 
-% hold on;
-% plot(x,y,'LineWidth',5,'Color',[1 1 1]);
-% 
-% % make like 'thick'
-% m = ((y(2)-y(1))/(x(2)-x(1))); % slope ( rise/run)
-counter = 1;
-
-
-% plot on top
-I = getimage(gca);
-
-for i = 1: 20; % change x and y by on
-    % solve for y = mx+b
-  y1(counter) = (round(m*(x(1)))+1*i);% increase 'b' by one...
-  x1(counter) = (round(y1(1)/m));
-  y1(counter) = -y1(counter);
-  counter = counter+1;
-  y1(counter) = (round(m*(x(2)))+1*i);
-  x1(counter) = (round(y1(2)/m));
-  y1(counter) = -y1(counter);
-  counter = 1;
-    temp = squeeze(improfile(I,x,y,1000));
-  if i ==1;
-  dat(:,:,i) = temp;
-  else
-  dat(:,:,i) = temp(1:size(dat,1),:);
-  end
-end
-
-
-
-
-dat2 = mean(dat,3);
-smth = 300; % smoothing factor
 figure();
-hold on;
- plot(smooth(dat2(:,1),smth),'r')
- plot(smooth(dat2(:,2),smth),'g')
- plot(smooth(dat2(:,3),smth),'b')
+RGB1 = XMASS_tish(IM2(:,:,1),IM2(:,:,2),IM2(:,:,3));
 
 
+if Draw_Line ==1;
+    % get cross-section ( through UI input)
+    disp('Make a cross-section selection!');
+    [x,y] = ginput(2);
+    
+    hold on;
+    plot(x,y,'LineWidth',5,'Color',[1 1 1]);
+    
+    % make like 'thick'
+    m = ((y(2)-y(1))/(x(2)-x(1))); % slope ( rise/run)
+    counter = 1;
+    
+    
+    % plot on top
+    I = getimage(gca);
+    
+    for i = 1: 20; % change x and y by on
+        % solve for y = mx+b
+        y1(counter) = (round(m*(x(1)))+1*i);% increase 'b' by one...
+        x1(counter) = (round(y1(1)/m));
+        y1(counter) = -y1(counter);
+        counter = counter+1;
+        y1(counter) = (round(m*(x(2)))+1*i);
+        x1(counter) = (round(y1(2)/m));
+        y1(counter) = -y1(counter);
+        counter = 1;
+        temp = squeeze(improfile(I,x,y,1000));
+        if i ==1;
+            dat(:,:,i) = temp;
+        else
+            dat(:,:,i) = temp(1:size(dat,1),:);
+        end
+    end
+    
+    
+    
+    
+    dat2 = mean(dat,3);
+    smth = 300; % smoothing factor
+    figure();
+    hold on;
+    plot(smooth(dat2(:,1),smth),'r')
+    plot(smooth(dat2(:,2),smth),'g')
+    plot(smooth(dat2(:,3),smth),'b')
+    
+end
 
 smooth_param = 10;% how much to spatially smooth
 
 for i = 1:3;
-C(:,:,i) =imgaussfilt(RGB1(:,:,i),smooth_param,'padding','circular');
+    C(:,:,i) =imgaussfilt(RGB1(:,:,i),smooth_param,'padding','circular');
 end
 
 % First, look at Blue vs Green
@@ -92,7 +97,7 @@ imagesc(RGB1);
 
 hold on;
 for i = 1:size(B,1)
-plot(B{i}(:,2),B{i}(:,1),'LineWidth',2,'Color',[1 1 1])
+    plot(B{i}(:,2),B{i}(:,1),'LineWidth',2,'Color',[1 1 1])
 end
 
 title('blue and green overlap');
@@ -123,7 +128,7 @@ out.B = BW2;
 
 % get ouptupts
 for i = 1: 3
-out.All(:,:,i) = imbinarize(C(:,:,i));
+    out.All(:,:,i) = imbinarize(C(:,:,i));
 end
 
 % Plot boundires
@@ -134,7 +139,7 @@ imagesc(RGB1);
 
 hold on;
 for i = 1:size(B2,1)
-plot(B2{i}(:,2),B2{i}(:,1),'LineWidth',2,'Color',[1 1 1])
+    plot(B2{i}(:,2),B2{i}(:,1),'LineWidth',2,'Color',[1 1 1])
 end
 title('red and green overlap')
 
