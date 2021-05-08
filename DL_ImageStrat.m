@@ -7,7 +7,7 @@ function [RGB1, out] = DL_ImageStrat(IM2);
 % Dec 2018; Last revision: 12-Dec-2020
 
 % User inputs
-Draw_Line = 1; % flag to draw a line across a damaged section
+Draw_Line = 0; % flag to draw a line across a damaged section
 
 % Make an intensity matched overlay:
 figure();
