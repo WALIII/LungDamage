@@ -1,4 +1,4 @@
-function [IM2] = DL_ImageSegment(image);
+function [IM2] = DL_ImageSegment(image2use);
 % DL_ImageSegmentation.m
 
 % Color-Based Segmentation Using K-Means Clustering for DCL's imaging data
@@ -23,25 +23,25 @@ if nargin<1 % if you don't pass the image as an argument, load from directory
     end
     currentfilename = file;
     currentimage = imread(currentfilename);
-    image = currentimage;
+    image2use = currentimage;
 end
 
 % downsample if image is too large/ too big...
-if size(image,1) > 3000;
+if size(image2use,1) > 3000;
     disp('image is very large- downsizing image')
-    image = imresize(image,0.75);
+    image2use = imresize(image2use,0.75);
 end
 
 
 % filter image:
-image = double(image);
+image2use = double(image2use);
 sigma = 2;% smooth
-image = imgaussfilt(image,sigma,'padding','circular');% Filter the data
+image2use = imgaussfilt(image2use,sigma,'padding','circular');% Filter the data
 
 
 disp(' pre-processing image...');
 % Pre-process Image
-lab_he = rgb2lab(image);
+lab_he = rgb2lab(image2use);
 ab = double(lab_he(:,:,2:3)); % for H&E, just take the G&B channel
 %ab = double(lab_he(:,:,2:3)); % for H&E, just take the G&B channel
 nrows = size(ab,1);
@@ -71,7 +71,7 @@ segmented_images = cell(1,3);
 rgb_label = repmat(pixel_labels,[1 1 3]);
 
 for k = 1:nColors
-    color = image;
+    color = image2use;
     color(rgb_label ~= k) = 0;
     segmented_images{k} = color;
 end
@@ -86,7 +86,7 @@ end
 
 [~,srtChan] = sort(chan_srt);
 
-DL_PlotPixels(image,cluster_idx,srtChan);
+DL_PlotPixels(image2use,cluster_idx,srtChan);
 for i = 1:nColors;
     IM2(:,:,i) = IM(:,:,srtChan(i));
 end
