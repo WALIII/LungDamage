@@ -21,7 +21,7 @@ if nargin<1 % if you don't pass the image as an argument, load from directory
     else
         disp(['User selected ', fullfile(path,file)]);
     end
-    currentfilename = file;
+    currentfilename = strcat(path,file);
     currentimage = imread(currentfilename);
     image2use = currentimage;
 end
