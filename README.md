@@ -13,6 +13,12 @@ If you use this in your work, please cite:
 Alveolar epithelial cell fate is maintained in a spatially restricted manner to promote lung regeneration after acute injury, _Liberti et al._  
 
 
+### Requirements:
+Before you begin, make sure you have the following MATLAB toolboxes installed:
+- [Image Processing Toolbox](https://www.mathworks.com/products/image.html)
+- [Statistics and Machine Learning Toolbox](https://www.mathworks.com/products/statistics.html)
+
+
 ### Basic Walkthrough
 
 
